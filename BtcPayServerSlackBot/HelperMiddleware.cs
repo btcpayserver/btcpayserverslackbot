@@ -90,13 +90,26 @@ public class HelperMiddleware : MiddlewareBase
         
         if (incomingMessage.RawText.ToLower().StartsWith("addjoke:"))
         {
-            var joke = incomingMessage.RawText.ToLower().Replace("addjoke:", string.Empty);
+            var joke = incomingMessage.RawText.Substring("addjoke:".Length);
             jokes.Add(new Joke()
             {
                 Content = joke
             });
             _jsonStoragePlugin.SaveFile("jokes", jokes.ToArray());
             yield return incomingMessage.ReplyDirectlyToUser("joke added!");
+        }
+        if (incomingMessage.RawText.ToLower().StartsWith("removejoke:"))
+        {
+            var joke = incomingMessage.RawText.Substring("removejoke:".Length);
+            if(jokes.Any(joke1 => joke == joke1.Content))
+            {
+                var jokeIndex = jokes.FindIndex(joke1 =>  joke == joke1.Content);
+                
+                jokes.RemoveAt(jokeIndex);
+                _jsonStoragePlugin.SaveFile("jokes", jokes.ToArray());
+                yield return incomingMessage.ReplyDirectlyToUser("joke removed!");
+            }
+
         }
     }
 }

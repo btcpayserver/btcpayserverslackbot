@@ -1,3 +1,5 @@
 /BtcPayServerSlackBot/obj
 /BtcPayServerSlackBot/bin
 .env
+
+BtcPayServerSlackBot/data/
