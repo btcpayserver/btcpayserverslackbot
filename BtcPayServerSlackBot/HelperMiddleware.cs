@@ -85,7 +85,7 @@ public class HelperMiddleware : MiddlewareBase
 
             _statsPlugin.IncrementState("Jokes:Told");
 
-            yield return incomingMessage.ReplyToChannel(jokes[_r.Next(0, jokes.Count - 1)].Content);
+            yield return incomingMessage.ReplyToChannel(jokes[_r.Next(0, jokes.Count)].Content);
         }
         
         if (incomingMessage.RawText.ToLower().StartsWith("addjoke:"))
