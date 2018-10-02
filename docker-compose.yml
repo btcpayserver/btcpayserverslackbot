@@ -1,6 +1,7 @@
 version: '3'
 services:
   bot:
+    restart: unless-stopped
     build: ./BtcPayServerSlackBot
     environment:
       - SlackApiKey
