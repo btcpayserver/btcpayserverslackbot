@@ -1,5 +1,12 @@
 ﻿using System;
 using System.Collections;
+using System.Net.Http;
+using System.Threading;
+using System.Threading.Tasks;
+using BtcPayServerSlackBot;
+using Flurl;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using Noobot.Core.Configuration;
 using Noobot.Core.Plugins.StandardPlugins;
 using Noobot.Toolbox.Middleware;
@@ -13,10 +20,10 @@ public class BotConfiguration : ConfigurationBase
 
         UseMiddleware<WelcomeMiddleware>();
         UseMiddleware<HelperMiddleware>();
-        UseMiddleware<JokeMiddleware>();
 
         UsePlugin<JsonStoragePlugin>();
         UsePlugin<StatsPlugin>();
+        
     }
 
     private void UseMiddleware(params Type[] types)
