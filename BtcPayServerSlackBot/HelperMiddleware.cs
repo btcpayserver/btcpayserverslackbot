@@ -59,7 +59,7 @@ public class HelperMiddleware : MiddlewareBase
         {
             yield return incomingMessage.IndicateTypingOnChannel();
             _statsPlugin.IncrementState("Helper:BlindlyHelped");
-            yield return incomingMessage.ReplyDirectlyToUser(
+            yield return incomingMessage.ReplyToChannel(
                 $"Perhaps you should look at https://nbitstack.com/c/btcpayserver and see if there is already an answer for you there, @{incomingMessage.Username}");
         }
 
@@ -73,7 +73,7 @@ public class HelperMiddleware : MiddlewareBase
             var message = $"Maybe this can help: {discourseUrl}/search?q={Url.Encode(searchText.Trim())}";
             
             _statsPlugin.IncrementState("RedirectedToDiscourseSearch:Count");
-            yield return incomingMessage.ReplyDirectlyToUser(message);
+            yield return incomingMessage.ReplyToChannel(message);
         }
 
 
